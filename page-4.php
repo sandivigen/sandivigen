@@ -5,7 +5,7 @@
         <?php the_content(); ?>
     </article> 
 <?php endwhile; ?>
-
+123
 <div class="container">
     <div class="row">
         <?php if (!isset($gt3_theme_pagebuilder['settings']['show_title']) || $gt3_theme_pagebuilder['settings']['show_title'] !== "no") { ?>
