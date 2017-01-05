@@ -1,4 +1,125 @@
 /* english lern */
+th.lern-table-th-1 {
+    width: 130px;
+}
+th.lern-table-th-2 {
+    width: 130px;
+}
+th.lern-table-th-3 {
+    width: 160px;
+}
+th.lern-table-th-4 {
+    width: 35px;
+}
+.page-id-24 tbody th {
+    font-weight: normal;
+}
+.color-grey {
+    color: #777;
+}
+.table-hidden-text>tbody>tr:nth-of-type(odd) {
+    color: #f9f9f9;
+}
+.table-hidden-text>tbody>tr:nth-of-type(even) {
+    color: #fff;
+}
+.table-hidden-text>tbody>tr>th:nth-of-type(2), .table-hidden-text>tbody>tr>th:nth-of-type(1) {
+    color: #000;
+}
+.englearn-vision-on {
+    color: #000!important;
+}
+.table-hidden-text .glyphicon-circle-arrow-right, .table-hidden-eng-text .glyphicon-circle-arrow-right {
+    visibility: hidden;
+}
+.englearn-vision-on .glyphicon-circle-arrow-right {
+    visibility: visible;
+}
+.page-id-24 .table .glyphicon-eye-open {
+    display: none;
+    margin-left: 5px;
+}
+.page-id-24 .table-hidden-text .glyphicon-eye-open {
+    display: block;
+}
+.accuracy-on .accuracy-background {
+    background: rgba(143, 188, 143, 0.25)!important;
+}
+.table-hidden-text .glyphicon-music, .table-hidden-eng-text .glyphicon-music {
+    display: none;
+}
+.englearn-vision-on .glyphicon-music {
+    display: block;
+}
+.table-hidden-text .wrap-count-tran, .table-hidden-text .wrap-count-pron, .table-hidden-text .wrap-count-verb {
+    display: block;
+}
+/*.englearn-vision-on .glyphicon-music, .englearn-vision-on .wrap-count-pron, .englearn-vision-on .wrap-count-verb {*/
+    /*display: block;*/
+/*}*/
+.table-hidden-text .glyphicon-info-sign, .table-hidden-eng-text .glyphicon-info-sign {
+    visibility: hidden;
+}
+.englearn-vision-on .glyphicon-info-sign {
+    visibility: visible;
+}
+.input-done {
+    width: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #777;
+    height: 20px;
+    margin: 0 3px;
+}
+.wrap-count-tran, .wrap-count-pron, .wrap-count-writ, .wrap-count-verb {
+    float: left;
+    display: none;
+}
+.learn-writ-title, .learn-eng-title {
+    display: none;
+}
+.page-id-24 .table tr th:first-child {
+    display: none;
+    height: 39px;
+    border-bottom: 1px;
+    border-right: 1px;
+    border-left: 1px;
+}
+.page-id-24 .table-hidden-text tr th:first-child, .table-hidden-text .learn-eng-title {
+    display: block;
+}
+.page-id-24 .table-hidden-eng-text .learn-writ-title,
+.page-id-24 .table-hidden-eng-text tr th:first-child,
+.table-hidden-eng-text .wrap-count-writ, .table-hidden-eng-text .wrap-count-verb {
+    display: block;
+}
+.table-hidden-eng-text>tbody>tr:nth-of-type(odd) {
+    color: #f9f9f9;
+}
+.table-hidden-eng-text>tbody>tr:nth-of-type(even) {
+    color: #fff;
+}
+.table-hidden-eng-text>tbody>tr>th:nth-of-type(3), .table-hidden-eng-text>tbody>tr>th:nth-of-type(1) {
+    color: #000;
+}
+.page-id-24 .table-hidden-eng-text .glyphicon-eye-open {
+    display: block;
+}
+.input-write-text {
+    display: none;
+}
+.table-hidden-eng-text .input-write-text {
+    display: block;
+    width: 115px;
+    height: 25px;
+    position: absolute;
+    left: 480px;
+}
+
+
+
+
+
 
 
 .string {
@@ -71,6 +192,9 @@ body .string input {
 }
 .column-2 span, .column-3 span {
 	color: #abdddd;
+}
+.column-2 span.glyphicon, .column-3 span.glyphicon {
+    color: #000;
 }
 .englearn-vision-on .column-2 span, .englearn-vision-on .column-3 span {
 	color: black;

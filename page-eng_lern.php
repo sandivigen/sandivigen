@@ -1,93 +1,449 @@
 <?php get_header(); ?>
+<script src='<?php echo get_template_directory_uri(); ?>/learn_eng.js'></script>
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script> <!-- for sound translate -->
 <!-- main and sidebar -->
 <?php get_sidebar(); ?>
-  <main class="col-md-10 bg-content">
+<?php global $wpdb; ?>
+<br>
+<br>
+<main class="col-md-12 bg-content">
+    <div class="panel panel-default" style="_display:none">
+          <div class="panel-body">
+              <form action="" method="post" class="_form-horizontal">
+                  <fieldset>
+                       <legend>Внесение данных в таблицу</legend>
+                      <div class="row">
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="word" for="word">На английском</label>
+                                  <input type="text" class="form-control" id="word" name="word">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="tran" for="tran">На русском</label>
+                                  <input type="text" class="form-control" id="tran" name="tran">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="pron" for="pron">Произношение</label>
+                                  <input type="text" class="form-control" id="pron" name="pron">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="pron_tran" for="pron_tran">Транскрипция</label>
+                                  <input type="text" class="form-control" id="pron_tran" name="pron_tran">
+                              </div>
+                          </div>
+                      </div>
 
-   
-<span class="visible-spelling">Учить правописание</span><br>
-<span class="visible-doneword">Указать изученные</span><br><br>
-<iframe src="http://translate.google.com/" width="300" height="80" name="lerneng">
-    Ваш браузер не поддерживает плавающие фреймы!
-</iframe>
+                      <div class="row">
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="word_2" for="word_2">На английском</label>
+                                  <input type="text" class="form-control" id="word_2" name="word_2">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="tran_2" for="tran_2">На русском</label>
+                                  <input type="text" class="form-control" id="tran_2" name="tran_2">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="pron_2" for="pron_2">Произношение</label>
+                                  <input type="text" class="form-control" id="pron_2" name="pron_2">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="pron_tran_2" for="pron_tran_2">Транскрипция</label>
+                                  <input type="text" class="form-control" id="pron_tran_2" name="pron_tran_2">
+                              </div>
+                          </div>
+                      </div>
 
-<?php 
-    $path_theme = get_template_directory_uri();
-    // https://toster.ru/q/39011 - вопрос по произношению гугл
-    // в базе должен быть ячейка для раздела(вопросы, глаголы)
-    // сделать для куков мста, вдруг историю удалю и все сотреться
-?>
+                      <div class="row">
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="word_3" for="word_3">На английском</label>
+                                  <input type="text" class="form-control" id="word_3" name="word_3">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="tran_3" for="tran_3">На русском</label>
+                                  <input type="text" class="form-control" id="tran_3" name="tran_3">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="pron_3" for="pron_3">Произношение</label>
+                                  <input type="text" class="form-control" id="pron_3" name="pron_3">
+                              </div>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="form-group">
+                                  <label class="pron_tran_3" for="pron_tran_3">Транскрипция</label>
+                                  <input type="text" class="form-control" id="pron_tran_3" name="pron_tran_3">
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="form-group">
+                                  <label class="category" for="category">Категория</label>
+                                  <select id="category" name="category" class="form-control">
+                                      <option value="verb" selected="selected">Глаголы</option>
+                                      <option value="paragraph_2">Абзац 2</option>
+                                      <option value="paragraph_3">Абзац 3</option>
+                                      <option value="paragraph_4">Абзац 4</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="col-md-4">
+                              <div class="form-group">
+                                  <label class="accuracy" for="accuracy">Точность</label>
+                                  <br>
+                                  <input type="checkbox" value="1" name="accuracy" id="accuracy">
+                              </div>
+                          </div>
+
+                          <div class="col-md-4">
+                          </div>
+                      </div>
+                      <input type="submit" name="my_button" value="Отправить" class="btn btn-default">
+                  </fieldset>
+              </form>
+              <div class="clear"></div>
+          </div>
+      <?php
+    // обработка внесения в базу новых слов
+    if( isset( $_POST['my_button'] ) ) {
+
+    // Если есть неправильная форма глагола
+    if($_POST['word_3']) {
+        $word      = implode(",", array($_POST['word'], $_POST['word_2'], $_POST['word_3']));
+        $tran      = implode(",", array($_POST['tran'], $_POST['tran_2'], $_POST['tran_3']));
+        $pron      = implode(",", array($_POST['pron'], $_POST['pron_2'], $_POST['pron_3']));
+        $pron_tran = implode(",", array($_POST['pron_tran'], $_POST['pron_tran_2'], $_POST['pron_tran_3']));
+    } elseif ($_POST['word_2']) {
+        $word      = implode(",", array($_POST['word'], $_POST['word_2']));
+        $tran      = implode(",", array($_POST['tran'], $_POST['tran_2']));
+        $pron      = implode(",", array($_POST['pron'], $_POST['pron_2']));
+        $pron_tran = implode(",", array($_POST['pron_tran'], $_POST['pron_tran_2']));
+    } else {
+        $word      = $_POST['word'];
+        $tran      = $_POST['tran'];
+        $pron_tran = $_POST['pron_tran'];
+        $pron      = $_POST['pron'];
+    }
+    $category  = $_POST['category'];
+    $accuracy  = $_POST['accuracy'];
+    $wpdb->query( $wpdb->prepare(
+        'INSERT INTO `wp_learneng`(`word`, `tran`, `pron_tran`, `pron`, `category`, `accuracy`) VALUES ("'.$word.'","'.$tran.'","'.$pron_tran.'", "'.$pron.'", "'.$category.'", "'.$accuracy.'")'
+    ));
+}
+    ?>
+</div>
 
 
-<?php
-    global $wpdb;
-    $results = $wpdb->get_results("SELECT * FROM wp_learneng");
-?>
-
-<?php
-    $counter_lern = 0;
-
-    echo '<h3 class="title-eng">Вопросы</h3>'; 
-
-    foreach($results as $string) {
-        $lern_id        = $string->id;
-        $lern_word      = $string->word;
-        $lern_tran      = $string->tran;
-        $lern_tran_done = $string->tran_done;
-        $lern_pron      = $string->pron;
-        $lern_pron_done = $string->pron_done;
-        $lern_writ_done = $string->writ_done;
-        $lern_learned   = $string->learned;
-        $lern_group     = $string->group;
-
-        
-        
-        if ($lern_group == 'questions') {
-            echo '<div class="string">';
-            echo      '<div class="column-1 column">'.$lern_word.'</div>';
-            echo      '<div class="column-2 column">';
-            echo          '<span>'.$lern_tran.'</span>';
-            echo          '<img src="'.$path_theme.'/img/eye.png" class="invisible-word">';
-            echo      '</div>';
-            echo      '<div class="column-3 column">';
-            echo          '<span>'.$lern_pron.'</span>';
-            echo          '<a href="http://translate.google.com/translate_tts?ie=utf-8&tl=en&q='.$lern_word.'" target="lerneng">';
-            echo              '<img src="'.$path_theme.'/img/quaver.png">';
-            echo          '</a>';
-            echo      '</div>';
-            echo      '<div class="column-6 column tran-done-'.$lern_id.'">';
-            echo          '<span>' . $lern_tran_done . '</span>';
-            echo          '<img src="'.$path_theme.'/img/add.png" id="'.$lern_id.'">';
-            echo      '</div>';
-
-            
-            echo      '<div class="column-7 column pron-done-'.$lern_id.'">';
-            echo          '<span>' . $lern_pron_done . '</span>';
-            echo          '<img src="'.$path_theme.'/img/add.png" id="'.$lern_id.'">';
-            echo      '</div>';
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary js-learn-eng">Учить англ</button>
+        <button type="button" class="btn btn-primary js-learn-writ">Правописание</button>
+        <button type="button" class="btn btn-default btn-accuracy-on">Проверенные</button>
+    </div>
 
 
-            echo      '<div class="column-8 column writ-done-'.$lern_id.'">';
-            echo          '<input type="text">';
-            echo          '<span>' . $lern_writ_done . '</span>';
-            echo          '<img src="'.$path_theme.'/img/add.png" id="'.$lern_id.'">';
-            echo      '</div>';
 
-            echo      '<div class="column-9 column">';
-            echo          '<img src="'.$path_theme.'/img/done.png">';
-            echo      '</div>';
-            echo '</div>';  
+        <?php
+
+        function createTableVerb($category) {
+
+            echo '<form action="" method="post">';
+            // Глаголы
+            global $wpdb;
+            if ($category == 'Verb')
+                $results_verb = $wpdb->get_results("SELECT * FROM wp_learneng WHERE Category='Verb'");
+
+            echo '<table class="table table-striped table-bordered"><caption>Глаголы</caption><thead><tr>';
+            echo    '<th class="lern-table-th-0"><span class="learn-eng-title">Пер/Звук/Фор</span><span class="learn-writ-title">Обр.пер/Фор</span></th>';
+            echo    '<th class="lern-table-th-1">Первая форма</th>';
+            echo    '<th class="lern-table-th-3">рус</th>';
+            echo    '<th class="lern-table-th-2">произн</th>';
+            echo    '<th class="lern-table-th-1">Вторая форма</th>';
+            echo    '<th class="lern-table-th-2">произн</th>';
+            echo    '<th class="lern-table-th-1">Третья форма</th>';
+            echo    '<th class="lern-table-th-2">произн</th>';
+            echo    '<th class="lern-table-th-4"></th>';
+            echo '</tr></thead><tbody>';
+
+            foreach($results_verb as $r) {
+
+                $lern_id        = $r->id;
+                $lern_word      = explode(",", $r->word);
+                $lern_tran      = explode(";", $r->tran);
+                $lern_tran_done = $r->tran_done;
+                $lern_pron_tran = explode(",", $r->pron_tran);
+                $lern_pron      = explode(",", $r->pron);
+                $lern_pron_done = $r->pron_done;
+                $lern_writ_done = $r->writ_done;
+                $lern_verb_done = $r->verb_done;
+                $lern_learned   = $r->learned;
+                $lern_group     = $r->group;
+                $lern_accuracy  = $r->accuracy;
+                $check_accuracy = ($lern_accuracy ? 'accuracy-background' : '');
+                $verb_des = ($r->des ? '<span class="glyphicon glyphicon-info-sign color-grey" data-toggle="tooltip" data-original-title="'.$r->des.'"></span>' : '');
+
+                // добавляю другие варианты (не основные) перевода
+                $lern_tran_tooltip = '';
+                $lern_tran_first = $lern_tran[0];
+                if (count($lern_tran) > 1) { // если более чем одно слово перевода
+                    $lern_tran_tooltip = ' <span class="glyphicon glyphicon-circle-arrow-right color-grey" data-toggle="tooltip" data-original-title="';
+                    array_shift($lern_tran); // удаляем первое слово массива, тк оно и так отображается
+                    foreach ($lern_tran as $word) {
+                        $lern_tran_tooltip .= $word.', '; // добовляем слова в тултип
+                    }
+                    $lern_tran_tooltip = substr($lern_tran_tooltip, 0, -2); // удаляю лишнюю запятую
+                    $lern_tran_tooltip .= '"></span>';
+                }
+
+                echo '<tr class="'.$check_accuracy.'">';
+                echo     '<th>';
+                echo     '<div class="wrap-count-tran"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="tran_done['.$lern_id.']" value ="'.$lern_tran_done.'"></div>';
+                echo     '<div class="wrap-count-pron"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="pron_done['.$lern_id.']" value ="'.$lern_pron_done.'"></div>';
+                echo     '<div class="wrap-count-writ"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="writ_done['.$lern_id.']" value ="'.$lern_writ_done.'"></div>';
+                echo     '<div class="wrap-count-verb"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="verb_done['.$lern_id.']" value ="'.$lern_verb_done.'"></div>';
+                echo     '<span class="glyphicon glyphicon-eye-open pull-right color-grey invisible-word"></span>';
+                echo     '<input class="form-control input-write-text">';
+                echo     '</th>';
+                echo     '<th>'.$lern_word[0].'<span class="glyphicon glyphicon-music pull-right color-grey"></span></th>';
+                echo     '<th>'.$lern_tran_first.$lern_tran_tooltip.'</th>';
+                echo     '<th><span data-toggle="tooltip" data-original-title="'.$lern_pron_tran[0].'" >'.$lern_pron[0].'</span></th>';
+                echo     '<th>'.$lern_word[1].($lern_word[1] ? '<span class="glyphicon glyphicon-music pull-right color-grey"></span>' : '' ).'</th>';
+                echo     '<th><span data-toggle="tooltip" data-original-title="'.$lern_pron_tran[1].'" >'.$lern_pron[1].'</span></th>';
+                echo     '<th>'.$lern_word[2].($lern_word[2] ? '<span class="glyphicon glyphicon-music pull-right color-grey"></span>' : '' ).'</th>';
+                echo     '<th><span data-toggle="tooltip" data-original-title="'.$lern_pron_tran[2].'" >'.$lern_pron[2].'</span></th>';
+                echo     '<th>'.$verb_des.'</th>';
+                echo '</tr>';
+            }
+            echo    '</tbody>';
+            echo '</table>';
+            echo '<input type="submit" name="send_verb" value="Отправить" class="btn btn-default">';
+            echo '</form>';
         }
 
-        $counter_lern++;
+        function createTable($category) {
+
+            echo '<form action="" method="post">';
+            // Глаголы
+            global $wpdb;
+            if ($category == 'Questions')
+                $results_verb = $wpdb->get_results("SELECT * FROM wp_learneng WHERE Category='questions'");
+
+            echo '<table class="table table-striped table-bordered"><caption>'.$category.'</caption><thead><tr>';
+            echo    '<th class="lern-table-th-0"><span class="learn-eng-title">Пер/Звук/Фор</span><span class="learn-writ-title">Обр.пер/Фор</span></th>';
+            echo    '<th class="lern-table-th-1">Первая форма</th>';
+            echo    '<th class="lern-table-th-3">рус</th>';
+            echo    '<th class="lern-table-th-2">произн</th>';
+            echo    '<th class="lern-table-th-4"></th>';
+            echo '</tr></thead><tbody>';
+
+            foreach($results_verb as $r) {
+
+                $lern_id        = $r->id;
+                $lern_word      = explode(",", $r->word);
+                $lern_tran      = explode(";", $r->tran);
+                $lern_tran_done = $r->tran_done;
+                $lern_pron_tran = explode(",", $r->pron_tran);
+                $lern_pron      = explode(",", $r->pron);
+                $lern_pron_done = $r->pron_done;
+                $lern_writ_done = $r->writ_done;
+                $lern_verb_done = $r->verb_done;
+                $lern_learned   = $r->learned;
+                $lern_group     = $r->group;
+                $lern_accuracy  = $r->accuracy;
+                $check_accuracy = ($lern_accuracy ? 'accuracy-background' : '');
+                $verb_des = ($r->des ? '<span class="glyphicon glyphicon-info-sign color-grey" data-toggle="tooltip" data-original-title="'.$r->des.'"></span>' : '');
+
+                // добавляю другие варианты (не основные) перевода
+                $lern_tran_tooltip = '';
+                $lern_tran_first = $lern_tran[0];
+                if (count($lern_tran) > 1) { // если более чем одно слово перевода
+                    $lern_tran_tooltip = ' <span class="glyphicon glyphicon-circle-arrow-right color-grey" data-toggle="tooltip" data-original-title="';
+                    array_shift($lern_tran); // удаляем первое слово массива, тк оно и так отображается
+                    foreach ($lern_tran as $word) {
+                        $lern_tran_tooltip .= $word.', '; // добовляем слова в тултип
+                    }
+                    $lern_tran_tooltip = substr($lern_tran_tooltip, 0, -2); // удаляю лишнюю запятую
+                    $lern_tran_tooltip .= '"></span>';
+                }
+
+                echo '<tr class="'.$check_accuracy.'">';
+                echo     '<th>';
+                echo     '<div class="wrap-count-tran"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="tran_done['.$lern_id.']" value ="'.$lern_tran_done.'"></div>';
+                echo     '<div class="wrap-count-pron"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="pron_done['.$lern_id.']" value ="'.$lern_pron_done.'"></div>';
+                echo     '<div class="wrap-count-writ"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="writ_done['.$lern_id.']" value ="'.$lern_writ_done.'"></div>';
+                echo     '<div class="wrap-count-verb"><span class="glyphicon glyphicon-plus-sign color-grey" word-id="'.$lern_id.'"></span><input type="text" class="input-done id-tran_done-'.$lern_id.'" name="verb_done['.$lern_id.']" value ="'.$lern_verb_done.'"></div>';
+                echo     '<span class="glyphicon glyphicon-eye-open pull-right color-grey invisible-word"></span>';
+                echo     '<input class="form-control input-write-text">';
+                echo     '</th>';
+                echo     '<th>'.$lern_word[0].'<span class="glyphicon glyphicon-music pull-right color-grey"></span></th>';
+                echo     '<th>'.$lern_tran_first.$lern_tran_tooltip.'</th>';
+                echo     '<th><span data-toggle="tooltip" data-original-title="'.$lern_pron_tran[0].'" >'.$lern_pron[0].'</span></th>';
+                echo     '<th>'.$verb_des.'</th>';
+                echo '</tr>';
+            }
+            echo    '</tbody>';
+            echo '</table>';
+            echo '<input type="submit" name="send_verb" value="Отправить" class="btn btn-default">';
+            echo '</form>';
+        }
+
+        ?>
+
+    <?php
+        createTableVerb('Verb');
+        createTable('Questions');
+    ?>
+
+    <?php
+    // обновление выученых слов
+    if( isset( $_POST['send_verb'] ) ) {
+
+        foreach ($_POST['tran_done'] as $word_id => $val) {
+            $data_tran    = array("tran_done" => $val);                         // вносим значение в колонку tran-done
+            $where_tran   = array("id" => $word_id);                            // в строку соответствующию этому ид
+            $wpdb->update( 'wp_learneng', $data_tran, $where_tran, "%d", "%d"); // отправляем обновление записи - tran
+        }
+        foreach ($_POST['pron_done'] as $word_id => $val) {
+            $data_tran    = array("pron_done" => $val);                         // вносим значение в колонку tran-done
+            $where_tran   = array("id" => $word_id);                            // в строку соответствующию этому ид
+            $wpdb->update( 'wp_learneng', $data_tran, $where_tran, "%d", "%d"); // отправляем обновление записи - tran
+        }
+        foreach ($_POST['writ_done'] as $word_id => $val) {
+            $data_tran    = array("writ_done" => $val);                         // вносим значение в колонку tran-done
+            $where_tran   = array("id" => $word_id);                            // в строку соответствующию этому ид
+            $wpdb->update( 'wp_learneng', $data_tran, $where_tran, "%d", "%d"); // отправляем обновление записи - tran
+        }
+        foreach ($_POST['verb_done'] as $word_id => $val) {
+            $data_tran    = array("verb_done" => $val);                         // вносим значение в колонку tran-done
+            $where_tran   = array("id" => $word_id);                            // в строку соответствующию этому ид
+            $wpdb->update( 'wp_learneng', $data_tran, $where_tran, "%d", "%d"); // отправляем обновление записи - tran
+        }
     }
+    ?>
+
+
+
+
+
+
+
+
+
+    
+
+
+<?php
+
+$results_ques = $wpdb->get_results("SELECT * FROM wp_learneng WHERE Category='paragraph_2'");
+
+echo '<table class="table table-striped table-bordered"><caption>Вопросы</caption><thead><tr>';
+echo            '<th>Первая форма</th>';
+echo            '<th>рус</th>';
+echo            '<th>произн</th>';
+echo            '<th>пояснение</th>';
+echo        '</tr></thead><tbody>';
+
+foreach($results_ques as $r) {
+    echo        '<tr>';
+    echo            '<th>'.$r->word.'</th>';
+    echo            '<th>'.$r->tran.'</th>';
+    echo            '<th>'.$r->pron.'</th>';
+    echo            '<th></th>';
+    echo        '</tr>';
+}
+
+echo    '</tbody>';
+echo '</table>';
+?>
+
+<?php
+$results = $wpdb->get_results("SELECT * FROM wp_learneng");
+
+$counter_lern = 0;
+
+foreach($results as $string) {
+    $lern_id        = $string->id;
+    $lern_word      = $string->word;
+    $lern_tran      = $string->tran;
+    $lern_tran_done = $string->tran_done;
+    $lern_pron      = $string->pron;
+    $lern_pron_done = $string->pron_done;
+    $lern_writ_done = $string->writ_done;
+    $lern_learned   = $string->learned;
+    $lern_group     = $string->category;
+
+    if ($lern_group == 'questions') {
+        echo '<div class="string">';
+        echo      '<div class="column-1 column">'.$lern_word.'</div>';
+        echo      '<div class="column-2 column">';
+        echo          '<span>'.$lern_tran.'</span>';
+        echo          '<span class="glyphicon glyphicon-eye-open invisible-word"></span>';
+//            echo          '<img src="'.$path_theme.'/img/eye.png" class="invisible-word">';
+        echo      '</div>';
+
+
+
+        echo      '<div class="column-3 column">';
+        echo          '<span>'.$lern_pron.'</span>';
+        echo          '<a href="http://translate.google.com/translate_tts?ie=utf-8&tl=en&q='.$lern_word.'" target="lerneng">';
+        echo          '<span class="glyphicon glyphicon-music"></span>';
+//            echo              '<img src="'.$path_theme.'/img/quaver.png">';
+        echo          '</a>';
+        echo      '</div>';
+        echo      '<div class="column-6 column tran-done-'.$lern_id.'">';
+        echo          '<span>' . $lern_tran_done . '</span>';
+        echo          '<span class="glyphicon glyphicon-plus-sign pull-right"></span>';
+//            echo          '<img src="'.$path_theme.'/img/add.png" id="'.$lern_id.'">';
+        echo      '</div>';
+
+
+
+        echo      '<div class="column-7 column pron-done-'.$lern_id.'">';
+        echo          '<span>' . $lern_pron_done . '</span>';
+        echo          '<span class="glyphicon glyphicon-plus-sign"></span>';
+//            echo          '<img src="'.$path_theme.'/img/add.png" id="'.$lern_id.'">';
+        echo      '</div>';
+
+
+        echo      '<div class="column-8 column writ-done-'.$lern_id.'">';
+        echo          '<input type="text">';
+        echo          '<span>' . $lern_writ_done . '</span>';
+//            echo          '<img src="'.$path_theme.'/img/add.png" id="'.$lern_id.'">';
+        echo      '</div>';
+
+        echo      '<div class="column-9 column">';
+//            echo          '<img src="'.$path_theme.'/img/done.png">';
+        echo      '</div>';
+        echo '</div>';
+    }
+
+    $counter_lern++;
+}
 ?>
 
 <br><br>
-<form method=post> 
-    <input type=submit name=knopka value=ok> 
+<form method=post>
+<!--    <input type=submit name=knopka value=ok> -->
 </form> 
-<a href=""></a>
-<?php 
+<?php
     if(isset($_POST[knopka])) {                                                             // если нажали кнопку
         for ($x=0; $x<=$counter_lern; $x++) {                     
 
@@ -104,8 +460,6 @@
             $where_pron        = array("id" => $x);                                         // в строку соответствующию этому ид
             $data_writ         = array("writ_done" => $cookie_writ);                        // вносим значение в колонку tran-done
             $where_writ        = array("id" => $x);                                         // в строку соответствующию этому ид
-            
-
 
             $format       = "%d";                                                           // %s для строк, %d для десятичных чисел и %f для чисел с плавающей точкой.
             $where_format = "%d";
@@ -115,82 +469,139 @@
             $wpdb->update( 'wp_learneng', $data_writ, $where_writ, $format, $where_format); // отправляем обновление записи - writ
         }
     } 
-
 ?>
 
+<!--Как лучше сделать?-->
+<!--      - во первых нужна транскрипция-->
+<!--      - во вторых нужно сделать место для трех форм глаголов-->
+<!--      - неправильные глаголы есть только в глаголах, для других не нужно расширять таблицу-->
+<!--      - если есть пояснение, то-->
+<!--      - будут категории: цвета-->
+<!---->
+<!--Структура-->
+<!--      - массив(1-->
+<!--или-->
+<!--      - сделтаь для глаголов отдельную таблицу? или кидать в массив глаголы, и при выводе-->
+<!--      - сложно сказать, но в любой момент можно переделать-->
+<!--      - чтобы оставить оду таблицу можно оставить в ней глаголы-->
+<!--      - будет проблемы, нужно будет вносить в ручную архивы, хотя создать простой инструмент для добавления и все тут-->
+<!--Что я могу учить?-->
+<!--      - перевод-->
+<!--      - произношение-->
+<!--      - правописание-->
+<!--      - есть ли у этого глагола неправильная форма-->
+<!--      * необхоимо сделать завершенность слова(т.е. заполнены ли все формы глаголов и указанны ли все транскрипции,-->
+<!--Я должен как-то комбинировать или проводить 3 независимых теста-->
+<!--      - изучать можно перевод и произношение, так как я могу прочитать на англ-->
+<!--      - изучать обратный перевод: дается на русском, я говорю на английском и пишу на английском-->
+<!---->
 
 
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-           
-                
-          <table class="table table-striped table-bordered">
-            <!-- <caption>Почасовая оплата</caption> -->
-            <thead>
-              <tr>
-                  <th>Глагол to by</th>
-                  <th>рус</th>
-                  <th>звуч</th>
-                  <th>пояснение</th>
-                  <th></span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>engish</td>
-                    <td>russia</td>
-                    <td>zvuk</td>
-                    <td>description</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="hr-2 ">5 до 7</td>
-                    <td class="hr-2 hourseRateQuantity05to07"></td>
-                    <td class="hr-2 hourseRateRatio05to07"></td>
-                    <td class="hr-2 hourseQuantity05to07"></td>
-                    <td class="hr-2 hourseRatio05to07"></td>
-                </tr>
-                <tr>
-                    <td class="hr-3 ">7 до 9</td>
-                    <td class="hr-3 hourseRateQuantity07to09"></td>
-                    <td class="hr-3 hourseRateRatio07to09"></td>
-                    <td class="hr-3 hourseQuantity07to09"></td>
-                    <td class="hr-3 hourseRatio07to09"></td>
-                </tr>
-                <tr>
-                    <td class="hr-4 ">9 до 11</td>
-                    <td class="hr-4 hourseRateQuantity09to11"></td>
-                    <td class="hr-4 hourseRateRatio09to11"></td>
-                    <td class="hr-4 hourseQuantity09to11"></td>
-                    <td class="hr-4 hourseRatio09to11"></td>
-                </tr>
-                <tr>
-                    <td class="hr-5 ">11 до 15</td>
-                    <td class="hr-5 hourseRateQuantity11to15"></td>
-                    <td class="hr-5 hourseRateRatio11to15"></td>
-                    <td class="hr-5 hourseQuantity11to15"></td>
-                    <td class="hr-5 hourseRatio11to15"></td>
-                </tr>
-                <tr>
-                    <td class="hr-6 ">15 до 20</td>
-                    <td class="hr-6 hourseRateQuantity15to20"></td>
-                    <td class="hr-6 hourseRateRatio15to20"></td>  
-                    <td class="hr-6 hourseQuantity15to20"></td>
-                    <td class="hr-6 hourseRatio15to20"></td>           
-                </tr>
-                <tr>
-                    <td class="hr-7 "> &gt; 20</td>
-                    <td class="hr-7 hourseRateQuantity20to50"></td>
-                    <td class="hr-7 hourseRateRatio20to50"></td>    
-                    <td class="hr-7 hourseQuantity20to50"></td>
-                    <td class="hr-7 hourseRatio20to50"></td>         
-                </tr>
-            </tbody>
-        </table>
+<br><br>
 
-            
-                
+      <table class="table table-striped table-bordered">
+          <!-- <caption>Почасовая оплата</caption> -->
+          <thead>
+          <tr>
+              <th>Глагол to by</th>
+              <th>рус</th>
+              <th>звуч</th>
+              <th>пояснение</th>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>by</td>
+              <td>быть</td>
+              <td>бии</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>been</td>
+              <td>было</td>
+              <td>биин</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>are</td>
+              <td>(насто, множ)</td>
+              <td>а</td>
+              <td><span class="label label-default" data-toggle="tooltip" title="" data-original-title="are - последнее спряжение, которое используется в настоящем времени. Мы его используем если говорим о множестве предметов или со словом you">des</span></td>
+          </tr>
+          <tr>
+              <td>were</td>
+              <td>(прошлое, множ)</td>
+              <td>вэа</td>
+              <td><span class="label label-default" data-toggle="tooltip" title="" data-original-title="were - когда о нескольких вещах или используем вежливое you">des</span></td>
+          </tr>
+          <tr>
+              <td>was</td>
+              <td>(прошлое, ед)</td>
+              <td>воз</td>
+              <td><span class="label label-default" data-toggle="tooltip" title="" data-original-title="was - когда мы говорим о себе или о любом другом предмете в ед.числе">des</span></td>
+          </tr>
+          <tr>
+              <td>is</td>
+              <td>есть, быть</td>
+              <td>ис</td>
+              <td><span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="" data-original-title="если мы говорим о единственном человеке или предмете, то глагол принимает форму is"></span></td>
+          </tr>
+          </tbody>
+      </table>
+
+      <table class="table table-striped table-bordered">
+           <caption>Глаголы</caption>
+          <thead>
+          <tr>
+              <th>Первая форма</th>
+              <th>рус</th>
+              <th>Вторая форма</th>
+              <th>рус</th>
+              <th>Третья форма</th>
+              <th>рус</th>
+              <th>звуч</th>
+              <th>пояснение</th>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>here</td>
+              <td>здесь, суда</td>
+              <td>хиа</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>there</td>
+              <td>там, туда</td>
+              <td>зэа</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>engish</td>
+              <td>russia</td>
+              <td>zvuk</td>
+              <td>description</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+          </tr>
+          </tbody>
+      </table>
+
+
+
             
         <h3>Записи</h3>
 
@@ -198,11 +609,6 @@
             <div class="column-1 column">never</div>
             <div class="column-2 column">не когда</div>
             <div class="column-3 column">нева</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">seen</div>
-            <div class="column-2 column">увиденный</div>
-            <div class="column-3 column">сиин</div>не точно, но ароде как это третья форма глагола обозначает завершенное дело
         </div>
         <div class="string">
             <div class="column-1 column">before</div>
@@ -213,11 +619,6 @@
             <div class="column-1 column">better</div>
             <div class="column-2 column">лучше, больше</div>
             <div class="column-3 column">бэта</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">been</div>
-            <div class="column-2 column">было</div>
-            <div class="column-3 column">биин</div>
         </div>
         <div class="string">
             <div class="column-1 column">thought</div>
@@ -250,8 +651,6 @@
             <div class="column-3 column">энаф</div>
         </div>
 
-        
-
 
         <br>
         <h3>Глаголы</h3>
@@ -260,13 +659,6 @@
             <div class="column-1 column">travel</div>
             <div class="column-2 column">путешествовать</div>
             <div class="column-3 column">чравел</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">take</div>
-            <div class="column-2 column">брать</div>
-            <div class="column-3 column">тейк</div>
-            <div class="column-4 column">took</div>
-            <div class="column-5 column">тук</div>
         </div>
         <div class="string">
             <div class="column-1 column">read</div>
@@ -314,27 +706,6 @@
             <div class="column-3 column">тфинк</div>
         </div>
         <div class="string">
-            <div class="column-1 column">come</div>
-            <div class="column-2 column">приходить</div>
-            <div class="column-3 column">кам</div>
-            <div class="column-4 column">came</div>
-            <div class="column-5 column">кейм</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">go</div>
-            <div class="column-2 column">ходить</div>
-            <div class="column-3 column">гоу</div>
-            <div class="column-4 column">went</div>
-            <div class="column-5 column">вэнт</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">see</div>
-            <div class="column-2 column">си</div>
-            <div class="column-3 column">видить</div>
-            <div class="column-4 column">saw</div>
-            <div class="column-5 column">со</div>
-        </div>
-        <div class="string">
             <div class="column-1 column"></div>
             <div class="column-2 column"></div>
             <div class="column-3 column"></div>
@@ -359,7 +730,7 @@
             <div class="column-3 column">зей</div>
         </div>
         <div class="string">
-            <div class="column-1 column">spleep</div>
+            <div class="column-1 column">sleep</div>
             <div class="column-2 column">спать</div>
             <div class="column-3 column">слип</div>
         </div>
@@ -649,11 +1020,6 @@
             <div class="column-3 column">тэ</div>
         </div>
         <div class="string">
-            <div class="column-1 column">have</div>
-            <div class="column-2 column">иметь</div>
-            <div class="column-3 column">хав</div>
-        </div>
-        <div class="string">
             <div class="column-1 column">with</div>
             <div class="column-2 column">с, вместе с</div>
             <div class="column-3 column">вэйт</div>
@@ -669,34 +1035,7 @@
             <div class="column-3 column">стадий</div>
         </div>
 
-        <div class="clear-both"></div><br>
-        <h3>Глаголы to be</h3>
 
-        <div class="string">
-            <div class="column-1 column">here</div>
-            <div class="column-2 column">здесь, суда</div>
-            <div class="column-3 column">хиа</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">there</div>
-            <div class="column-2 column">там, туда</div>
-            <div class="column-3 column">зэа</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">are</div>
-            <div class="column-2 column">(насто, множ)</div>
-            <div class="column-3 column">а</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">were</div>
-            <div class="column-2 column">(прошлое, множ)</div>
-            <div class="column-3 column">вэа</div>
-        </div>
-        <div class="string">
-            <div class="column-1 column">was</div>
-            <div class="column-2 column">(прошлое, ед)</div>
-            <div class="column-3 column">воз</div>
-        </div>
 
         <div class="clear-both"></div><br>
         <h3>Притяжательные местоимения</h3>
@@ -854,14 +1193,16 @@
  
 
 
-На кого ты работаеш?   =>   Who do you work for (Кто делает тебя работа на)
-Who do you    =>   Кем вы 
-work for      =>   работать на
-i work as     =>   я работаю в качестве
-i work as a    =>   я работаю
-what is your  => какова ваша
+<!--На кого ты работаеш?   =>   Who do you work for (Кто делает тебя работа на)-->
+<!--Who do you    =>   Кем вы -->
+<!--work for      =>   работать на-->
+<!--i work as     =>   я работаю в качестве-->
+<!--i work as a    =>   я работаю-->
+<!--what is your  => какова ваша-->
 
-
+    <!--<iframe src="http://translate.google.com&output=embed" width="300" height="80" name="lerneng">-->
+    <!--    Ваш браузер не поддерживает плавающие фреймы!-->
+    <!--</iframe>-->
 
   </main>
 </div>
